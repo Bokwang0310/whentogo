@@ -1,7 +1,8 @@
 const form = document.querySelector(".form");
-const originInput = form.querySelector(".origin");
-const changedInput = form.querySelector(".changed");
+const originInput = form.querySelector("#origin");
+const changedInput = form.querySelector("#changed");
 const article = document.querySelector("article");
+const btn = document.querySelector("button");
 
 function parseDate(htmlDate) {
   const cleanedStr = htmlDate.toString().split("-").join("");
@@ -38,17 +39,22 @@ function getDiff(fromDay, toDay) {
 }
 
 function insert(diff) {
+  const onlyDay = article.querySelector(".only-day");
+  const detail = article.querySelector(".detail");
   switch (diff.length) {
     case undefined:
-      article.innerText = `${diff}일 밀림`;
+      onlyDay.innerText = `${diff}일 밀렸습니다`;
+      detail.innerText = "";
       break;
 
     case 3:
-      article.innerText = `${diff[1]}월 하고 ${diff[2]}일 밀림 총 ${diff[0]}일 밀림`;
+      detail.innerText = `${diff[1]}개월, ${diff[2]}일 밀렸습니다`;
+      onlyDay.innerText = `총 ${diff[0]}일 밀렸습니다`;
       break;
 
     default:
-      article.innerText = `${diff[1]}년 하고 ${diff[2]}월 하고 ${diff[3]}일 밀림 총 ${diff[0]}일 밀림`;
+      detail.innerText = `${diff[1]}년, ${diff[2]}개월, ${diff[3]}일 밀렸습니다`;
+      onlyDay.innerText = `총 ${diff[0]}일 밀렸습니다.`;
       break;
   }
 }
@@ -62,7 +68,7 @@ function handleSubmit(e) {
 }
 
 function init() {
-  form.addEventListener("submit", handleSubmit);
+  btn.addEventListener("click", handleSubmit);
 }
 
 init();

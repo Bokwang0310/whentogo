@@ -4,16 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WhenToGo</title>
+    <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
+    <header>
+      <h1>When To Go!</h1>
+    </header>
     <form class="form">
-      <input class="origin" type="date" value="2020-03-02" />
-      <input class="changed" type="date" value="2020-06-03" />
-      <button>💨</button>
+      <p>
+        <label>
+          기존 개학 예정일
+          <input id="origin" type="date" value="2020-03-02" />
+        </label>
+      </p>
+      <p>
+        <label>
+          현재 바뀐 개학일
+          <input id="changed" type="date" value="2020-06-03" />
+        </label>
+      </p>
     </form>
+    <div class="btn-wrapper">
+      <button>💨</button>
+    </div>
     <article>
-      GOGO
+      <div class="detail">빠륵</div>
+      <div class="only-day">미륵</div>
     </article>
+    <footer>
+      <div class="footer-1"><p>Search</p></div>
+      <div class="footer-2"><p>Calculate</p></div>
+    </footer>
   </body>
 </html>
