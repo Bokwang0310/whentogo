@@ -1,6 +1,7 @@
 const form = document.querySelector(".form");
 const originInput = form.querySelector(".origin");
 const changedInput = form.querySelector(".changed");
+const article = document.querySelector("article");
 
 function parseDate(htmlDate) {
   const cleanedStr = htmlDate.toString().split("-").join("");
@@ -36,12 +37,28 @@ function getDiff(fromDay, toDay) {
   }
 }
 
+function insert(diff) {
+  switch (diff.length) {
+    case undefined:
+      article.innerText = `${diff}일 밀림`;
+      break;
+
+    case 3:
+      article.innerText = `${diff[1]}월 하고 ${diff[2]}일 밀림 총 ${diff[0]}일 밀림`;
+      break;
+
+    default:
+      article.innerText = `${diff[1]}년 하고 ${diff[2]}월 하고 ${diff[3]}일 밀림 총 ${diff[0]}일 밀림`;
+      break;
+  }
+}
+
 function handleSubmit(e) {
   e.preventDefault();
   const originDate = parseDate(originInput.value);
   const changedDate = parseDate(changedInput.value);
-  const ment = getDiff(originDate, changedDate);
-  console.log(ment);
+  const diff = getDiff(originDate, changedDate);
+  insert(diff);
 }
 
 function init() {
@@ -49,5 +66,3 @@ function init() {
 }
 
 init();
-
-//
