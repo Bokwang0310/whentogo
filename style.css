@@ -11,16 +11,15 @@ body {
 }
 
 h1 {
-  padding-top: 3rem;
+  padding-top: 5rem;
   color: #000000;
   font-weight: 700;
   font-size: 5rem;
   text-align: center;
 }
 form {
-  margin: 5rem auto;
-  margin-top: 4rem;
-  margin-bottom: 2.5rem;
+  margin: 6rem auto;
+  margin-bottom: 4rem;
   width: fit-content;
   padding: 2rem;
   box-shadow: 0 14px 25px rgba(0, 0, 0, 0.25), 0 4px 15px rgba(0, 0, 0, 0.22);
@@ -31,10 +30,12 @@ form {
   text-align: center;
   margin-bottom: 2rem;
 }
+
 button {
   font-size: xx-large;
   width: 5rem;
   height: 3rem;
+  cursor: pointer;
 }
 
 p {
@@ -51,7 +52,7 @@ article {
   text-align: center;
   font-weight: 600;
   font-size: 2.5rem;
-  margin: 3rem auto;
+  margin: 6rem auto;
 }
 
 article div {
@@ -67,9 +68,22 @@ input {
 }
 
 footer {
+  /*  */
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  /*  */
   display: flex;
-  height: 36.4vh;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10vh;
   align-items: stretch;
+  flex-wrap: wrap;
 }
 
 footer div {
@@ -78,8 +92,36 @@ footer div {
   text-align: center;
   background-color: antiquewhite;
   flex: 1;
+  transition: all 0.5s ease-in;
 }
 
+footer div.hover {
+  filter: brightness(70%);
+}
+
+footer div p {
+  margin: 1.4rem;
+}
+/* javascript control */
+footer div p.show {
+  display: block;
+}
+footer div p.none {
+  display: none;
+}
+footer div span.none {
+  display: none;
+}
+footer div span.show {
+  display: inline-block;
+  margin: 1.2rem auto;
+  text-align: center;
+  color: white;
+  background-color: unset;
+  border: solid 3px white;
+  border-radius: 10%;
+}
+/*  */
 footer .footer-1 {
   background-color: #ffa1b1;
 }

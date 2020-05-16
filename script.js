@@ -4,6 +4,9 @@ const changedInput = form.querySelector("#changed");
 const article = document.querySelector("article");
 const btn = document.querySelector("button");
 
+const footer = document.querySelector("footer");
+const footerSection = footer.querySelectorAll("div");
+
 function parseDate(htmlDate) {
   const cleanedStr = htmlDate.toString().split("-").join("");
 
@@ -67,8 +70,32 @@ function handleSubmit(e) {
   insert(diff);
 }
 
+function handleSectionEnter(e) {
+  const target = e.target;
+  const p = target.querySelector("p");
+  const span = target.querySelector("span");
+  p.classList.replace("show", "none");
+  span.classList.replace("none", "show");
+
+  target.classList.add("hover");
+}
+
+function handleSectionLeave(e) {
+  const target = e.target;
+  const p = target.querySelector("p");
+  const span = target.querySelector("span");
+  p.classList.replace("none", "show");
+  span.classList.replace("show", "none");
+
+  target.classList.remove("hover");
+}
+
 function init() {
   btn.addEventListener("click", handleSubmit);
+  footerSection.forEach((section) => {
+    section.addEventListener("mouseenter", handleSectionEnter);
+    section.addEventListener("mouseleave", handleSectionLeave);
+  });
 }
 
 init();
