@@ -15,3 +15,5 @@ function getNewsList() {
 }
 
 getNewsList();
+
+console.log(location);

@@ -4,44 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WhenToGo</title>
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
-    <script defer src="parser.js"></script>
+    <link class="main" rel="stylesheet" href="./css/main.css" />
+    <script defer class="main" src="./js/route.js"></script>
   </head>
   <body>
-    <header>
-      <h1>When To Go!</h1>
-    </header>
-    <form class="form">
-      <p>
-        <label>
-          기존 개학 예정일
-          <input id="origin" type="date" value="2020-03-02" />
-        </label>
-      </p>
-      <p>
-        <label>
-          현재 바뀐 개학일
-          <input id="changed" type="date" value="2020-06-03" />
-        </label>
-      </p>
-    </form>
-    <div class="btn-wrapper">
-      <button>💨</button>
+    <!-- main -->
+    <div class="main">
+      <header><h1>When To GO</h1></header>
+      <div class="sectionContainer">
+        <section class="calc">
+          <a href="#!calc"><span>Calculate</span></a>
+        </section>
+        <section class="news">
+          <a href="#!news"><span>News Parser</span></a>
+        </section>
+      </div>
     </div>
-    <article>
-      <div class="detail">빠륵</div>
-      <div class="only-day">미륵</div>
-    </article>
-    <footer>
-      <div class="footer-1">
-        <span class="none">🚀</span>
-        <p class="show">Search</p>
+    <!--// main -->
+    <div class="calc">
+      <header>
+        <h1>When To Go! vCalculate</h1>
+      </header>
+      <form class="form">
+        <p>
+          <label>
+            기존 개학 예정일
+            <input id="origin" type="date" value="2020-03-02" />
+          </label>
+        </p>
+        <p>
+          <label>
+            현재 바뀐 개학일
+            <input id="changed" type="date" value="2020-06-03" />
+          </label>
+        </p>
+      </form>
+      <div class="btn-wrapper">
+        <button>💨</button>
       </div>
-      <div class="footer-2">
-        <span class="none">🚀</span>
-        <p class="show">Calculate</p>
-      </div>
-    </footer>
+      <article>
+        <div class="detail">빠륵</div>
+        <div class="only-day">미륵</div>
+      </article>
+      <footer>
+        <div class="footer-1">
+          <span class="none">🚀</span>
+          <p class="show">Search</p>
+        </div>
+        <div class="footer-2">
+          <span class="none">🚀</span>
+          <p class="show">Calculate</p>
+        </div>
+      </footer>
+    </div>
+    <div class="news">Hello! news!</div>
   </body>
 </html>

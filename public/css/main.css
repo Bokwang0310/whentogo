@@ -1,0 +1,65 @@
+@import "reset.css";
+
+div.calc {
+  display: none;
+}
+div.news {
+  display: none;
+}
+
+html {
+  height: 100vh;
+}
+
+h1 {
+  margin: 2rem auto;
+  font-weight: 700;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.sectionContainer {
+  display: flex;
+  margin: 16vh auto;
+  height: 50vh;
+  align-items: stretch;
+  justify-content: center;
+}
+
+section {
+  /*  */
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  /*  */
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+section a {
+  display: block;
+  color: unset;
+  text-decoration: none;
+}
+
+section:hover {
+  filter: brightness(60%);
+}
+
+section span {
+  line-height: 50vh;
+  vertical-align: middle;
+  padding: 3rem auto;
+}
+
+section.calc {
+  background-color: #ff857c;
+}
+section.news {
+  background-color: #ff5050;
+}

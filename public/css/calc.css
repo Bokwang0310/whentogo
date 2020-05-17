@@ -1,5 +1,12 @@
 @import "reset.css";
 
+div.main {
+  display: none;
+}
+div.news {
+  display: none;
+}
+
 html {
   height: 100vh;
 }
