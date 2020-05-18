@@ -19,7 +19,7 @@ func main() {
 
 	e := echo.New()
 
-	e.Static("/", "public")
+	e.Static("/", "../client/public")
 	e.GET("/news/api/topic", apiTopicGet)
 	e.Logger.Fatal(e.Start(":8080"))
 }
