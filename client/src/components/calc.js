@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/calc.css";
+import { Link } from "react-router-dom";
 
 function Calc() {
   return (
@@ -7,7 +8,7 @@ function Calc() {
       <header>
         <h1>When To Go! vCalculate</h1>
       </header>
-      <form className="form">
+      <form>
         <p>
           <label>
             기존 개학 예정일
@@ -37,13 +38,9 @@ function Calc() {
           <span className="none" role="img" aria-label="page">
             🚀
           </span>
-          <p className="show">Search</p>
-        </div>
-        <div className="footer-2">
-          <span className="none" role="img" aria-label="page">
-            🚀
-          </span>
-          <p className="show">Calculate</p>
+          <Link to="/news" className="show">
+            Search
+          </Link>
         </div>
       </footer>
     </div>

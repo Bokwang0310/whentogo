@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/main.css";
+import { Link } from "react-router-dom";
 
 function Main() {
   return (
@@ -12,16 +13,14 @@ function Main() {
       </article>
       <footer>
         <div className="footer-1">
-          <span className="none" role="img" aria-label="page">
-            🚀
-          </span>
-          <p className="show">Search</p>
+          <Link to="/news" className="show">
+            Search
+          </Link>
         </div>
         <div className="footer-2">
-          <span className="none" role="img" aria-label="page">
-            🚀
-          </span>
-          <p className="show">Calculate</p>
+          <Link to="/calc" className="show">
+            Calculate
+          </Link>
         </div>
       </footer>
     </div>

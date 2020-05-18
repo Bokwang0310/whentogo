@@ -1,6 +1,6 @@
 @import "reset.css";
 
-div.root {
+html {
   height: 100vh;
 }
 
@@ -57,23 +57,17 @@ footer div {
   transition: all 0.5s ease-in;
 }
 
-footer div.hover {
+footer div:hover {
   filter: brightness(70%);
 }
 
-footer div p {
-  margin: 1.4rem;
-}
-/* javascript control */
-footer div p.show {
+footer div a {
   display: block;
+  margin: 1.4rem;
+  text-decoration: none;
+  color: #000000;
 }
-footer div p.none {
-  display: none;
-}
-footer div span.none {
-  display: none;
-}
+
 footer div span.show {
   display: inline-block;
   margin: 1.2rem auto;
@@ -83,7 +77,7 @@ footer div span.show {
   border: solid 3px white;
   border-radius: 10%;
 }
-/*  */
+
 footer .footer-1 {
   background-color: #ffa1b1;
 }
