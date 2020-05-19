@@ -19,13 +19,13 @@ func main() {
 
 	e := echo.New()
 
-	e.Static("/", "../client/public")
+	e.Static("/", "client/public")
 	e.GET("/news/api/topic", apiTopicGet)
 	e.Logger.Fatal(e.Start(":8080"))
 }
 
 func home(c echo.Context) error {
-	return c.File("./public/index.html")
+	return c.File("client/public/index.html")
 }
 
 func apiTopicGet(c echo.Context) error {

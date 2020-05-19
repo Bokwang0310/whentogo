@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Main() {
   return (
-    <div>
+    <>
       <header>
         <h1>When To Go!</h1>
       </header>
@@ -13,7 +13,7 @@ function Main() {
       </article>
       <footer>
         <div className="footer-1">
-          <Link to="/news" className="show">
+          <Link to="/news?page=1" className="show">
             Search
           </Link>
         </div>
@@ -23,7 +23,7 @@ function Main() {
           </Link>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
 

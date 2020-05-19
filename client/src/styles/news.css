@@ -1,3 +1,6 @@
 footer div span.none {
   display: none;
 }
+article {
+  font-size: 1rem;
+}
