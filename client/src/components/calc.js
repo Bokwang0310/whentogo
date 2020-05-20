@@ -119,7 +119,7 @@ function Calc() {
           <span className="none" role="img" aria-label="page">
             🚀
           </span>
-          <Link to="/news" className="show">
+          <Link to="/news?page=1" className="show">
             Search
           </Link>
         </div>

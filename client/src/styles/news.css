@@ -2,5 +2,13 @@ footer div span.none {
   display: none;
 }
 article {
-  font-size: 1rem;
+  font-size: 1.4rem;
+}
+
+article ul li {
+  padding: 0.8rem;
+}
+
+form {
+  all: unset;
 }
