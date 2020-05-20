@@ -5,11 +5,11 @@ import { useQueryParam, NumberParam } from "use-query-params";
 
 function News() {
   const [newsList, setNewsList] = useState([["뉴스를 로드 중 입니다", "#"]]);
+  const [query, setQuery] = useState("개학 연기");
   const [currentPage, setCurrentPage] = useQueryParam("page", NumberParam);
 
   useEffect(() => {
-    const page = currentPage;
-    const url = `/news/api/topic?page=${page}`;
+    const url = `/news/api/topic?query=${query}&page=${currentPage}`;
     fetch(url)
       .then((res) => {
         return res.json();
@@ -21,7 +21,7 @@ function News() {
       .catch((err) => {
         console.error(err);
       });
-  }, [currentPage]);
+  }, [query, currentPage]);
 
   const liTags = [];
   for (let i = 0; i < newsList.length; i++) {
@@ -41,6 +41,17 @@ function News() {
       <article>
         <ul>{liTags}</ul>
       </article>
+      <form>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => {
+            e.preventDefault();
+            setQuery(e.target.value);
+          }}
+        />
+        <button>search</button>
+      </form>
       <div className="indexContainer">
         <button
           onClick={() => {
