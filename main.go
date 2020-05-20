@@ -11,31 +11,28 @@ import (
 	"github.com/Bokwang0310/whentogo/clipping"
 )
 
-type newsList struct {
-	List [][]string
-}
-
 func main() {
-
 	e := echo.New()
 
 	e.Static("/", "client/public")
 	e.GET("/news/api/topic", apiTopicGet)
+
 	e.Logger.Fatal(e.Start(":8080"))
 }
 
-func home(c echo.Context) error {
-	return c.File("client/public/index.html")
+type newsList struct {
+	List [][]string
 }
 
 func apiTopicGet(c echo.Context) error {
-	value := c.QueryParam("page")
-	page, err := strconv.Atoi(value)
-	checkErr(err)
-	result := clipping.Clip(page)
+	page := parsePage(c)
+	query := parseQuery(c)
+
+	result := clipping.Clip(query, page)
 	obj := &newsList{List: result}
 	jsonResult, err := json.Marshal(obj)
 	checkErr(err)
+
 	return c.JSON(http.StatusOK, string(jsonResult))
 }
 
@@ -43,4 +40,18 @@ func checkErr(err error) {
 	if err != nil {
 		log.Fatalln(err)
 	}
+}
+
+func parsePage(c echo.Context) int {
+	queryString := c.QueryParam("page")
+	page, err := strconv.Atoi(queryString)
+	if err != nil {
+		page = 1
+	}
+	return page
+}
+
+func parseQuery(c echo.Context) string {
+	queryString := c.QueryParam("query")
+	return queryString
 }

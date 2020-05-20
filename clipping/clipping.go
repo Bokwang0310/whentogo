@@ -3,15 +3,18 @@ package clipping
 import (
 	"log"
 	"net/http"
+	"net/url"
 	"strconv"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
 // Clip with page index
-func Clip(page int) [][]string {
-	start := (page-1)*10 + 1 // 1 : 1, 2 : 11, 3 : 21 ...
-	url := "https://search.naver.com/search.naver?&where=news&query=%EA%B0%9C%ED%95%99%20%EC%97%B0%EA%B8%B0&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=37&start=" + strconv.Itoa(start)
+func Clip(query string, page int) [][]string {
+
+	query = url.QueryEscape(query)
+	start := strconv.Itoa((page-1)*10 + 1) // 1 : 1, 2 : 11, 3 : 21 ...
+	url := "https://search.naver.com/search.naver?&where=news&query=" + query + "&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=37&start=" + start
 	resp, err := http.Get(url)
 	checkStatus(resp, err)
 
