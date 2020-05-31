@@ -5,6 +5,9 @@ import { useQueryParam, NumberParam } from "use-query-params";
 
 function News() {
   const [newsList, setNewsList] = useState([["뉴스를 로드 중 입니다", "#"]]);
+  const [recommendList, setRecommendList] = useState([
+    "관련 검색어 로드 중입니다",
+  ]);
   const [query, setQuery] = useState("개학 연기");
   const [currentPage, setCurrentPage] = useQueryParam("page", NumberParam);
 
@@ -16,6 +19,8 @@ function News() {
       })
       .then((json) => {
         const newsArr = JSON.parse(json).List;
+        const recommnedArr = JSON.parse(json).Recommend;
+        setRecommendList(recommnedArr);
         setNewsList(newsArr);
       })
       .catch((err) => {
@@ -66,6 +71,7 @@ function News() {
           2
         </button>
       </div>
+      <div className="recommend">{recommendList}</div>
       <footer className="newsFooter">
         <div className="footer-2">
           <span className="none" role="img" aria-label="page">

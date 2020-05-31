@@ -21,18 +21,20 @@ func main() {
 }
 
 type newsList struct {
-	List [][]string
+	List      [][]string
+	Recommend []string
 }
 
 func apiTopicGet(c echo.Context) error {
 	page := parsePage(c)
 	query := parseQuery(c)
-
 	result := clipping.Clip(query, page)
-	obj := &newsList{List: result}
+	//
+	recommend := clipping.Recommend("등교 개학")
+
+	obj := &newsList{List: result, Recommend: recommend}
 	jsonResult, err := json.Marshal(obj)
 	checkErr(err)
-
 	return c.JSON(http.StatusOK, string(jsonResult))
 }
 
