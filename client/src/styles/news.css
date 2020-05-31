@@ -9,6 +9,11 @@ article ul li {
   padding: 0.8rem;
 }
 
-form {
-  all: unset;
+div.indexContainer {
+  display: flex;
+  align-items: center;
+}
+
+.newsFooter {
+  position: relative;
 }

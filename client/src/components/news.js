@@ -41,17 +41,15 @@ function News() {
       <article>
         <ul>{liTags}</ul>
       </article>
-      <form>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => {
-            e.preventDefault();
-            setQuery(e.target.value);
-          }}
-        />
-        <button>search</button>
-      </form>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => {
+          e.preventDefault();
+          setQuery(e.target.value);
+        }}
+      />
+      <button>search</button>
       <div className="indexContainer">
         <button
           onClick={() => {
@@ -68,7 +66,7 @@ function News() {
           2
         </button>
       </div>
-      <footer>
+      <footer className="newsFooter">
         <div className="footer-2">
           <span className="none" role="img" aria-label="page">
             🚀

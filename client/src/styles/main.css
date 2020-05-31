@@ -21,7 +21,7 @@ h1 {
 article {
   text-align: center;
   font-weight: 600;
-  margin: 6rem auto;
+  margin: 20rem auto;
 }
 
 article div {
@@ -38,7 +38,7 @@ footer {
   user-select: none;
   /*  */
   display: flex;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;

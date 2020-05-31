@@ -7,6 +7,10 @@ form {
   border-radius: 2%;
 }
 
+article {
+  margin: 7rem auto;
+}
+
 p {
   text-align: center;
   margin: 1rem auto;
