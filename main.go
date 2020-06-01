@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 	"strconv"
@@ -33,9 +32,7 @@ func apiTopicGet(c echo.Context) error {
 	recommend := clipping.Recommend("등교 개학")
 
 	obj := &newsList{List: result, Recommend: recommend}
-	jsonResult, err := json.Marshal(obj)
-	checkErr(err)
-	return c.JSON(http.StatusOK, string(jsonResult))
+	return c.JSON(http.StatusOK, obj)
 }
 
 func checkErr(err error) {
