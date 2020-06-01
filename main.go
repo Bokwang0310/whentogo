@@ -27,11 +27,15 @@ type newsList struct {
 func apiTopicGet(c echo.Context) error {
 	page := parsePage(c)
 	query := parseQuery(c)
+
 	result := clipping.Clip(query, page)
 	//
 	recommend := clipping.Recommend("등교 개학")
 
-	obj := &newsList{List: result, Recommend: recommend}
+	obj := &newsList{
+		List:      result,
+		Recommend: recommend,
+	}
 	return c.JSON(http.StatusOK, obj)
 }
 

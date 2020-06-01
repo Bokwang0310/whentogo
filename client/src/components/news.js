@@ -3,7 +3,7 @@ import "../styles/news.css";
 import { Link } from "react-router-dom";
 import { useQueryParam, NumberParam } from "use-query-params";
 
-// TODO : 관련 검색어 포맷, CSS CSS CSS CSS 제발 CSS, 코드 정리(서버도)
+// TODO : 관련 검색어 포맷, CSS CSS CSS CSS 제발 CSS, 코드 정리
 function News() {
   const [newsList, setNewsList] = useState([["뉴스를 로드 중 입니다", "#"]]);
   const [recommendList, setRecommendList] = useState([
@@ -19,8 +19,8 @@ function News() {
         return res.json();
       })
       .then((json) => {
-        const newsArr = JSON.parse(json).List;
-        const recommnedArr = JSON.parse(json).Recommend;
+        const newsArr = json.List;
+        const recommnedArr = json.Recommend;
         setRecommendList(recommnedArr);
         setNewsList(newsArr);
       })
@@ -38,7 +38,6 @@ function News() {
     );
   }
 
-  console.log(liTags);
   return (
     <>
       <header>

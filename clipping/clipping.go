@@ -25,22 +25,22 @@ func Clip(query string, page int) [][]string {
 
 	searchTopics := doc.Find("a._sp_each_title")
 
-	result := [][]string{}
-	result = extractTopic(searchTopics, result)
+	result := extractTopic(searchTopics)
 
 	return result
 }
 
-func extractTopic(searchTopics *goquery.Selection, result [][]string) [][]string {
+func extractTopic(searchTopics *goquery.Selection) [][]string {
+	target := [][]string{}
 	searchTopics.Each(func(i int, topic *goquery.Selection) {
 		topicTitle := topic.Text()
 		topicHref, success := topic.Attr("href")
 		if success == false {
 			log.Fatalln("Failed to load href")
 		}
-		result = append(result, []string{topicTitle, topicHref})
+		target = append(target, []string{topicTitle, topicHref})
 	})
-	return result
+	return target
 }
 
 func checkErr(err error) {

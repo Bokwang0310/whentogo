@@ -20,16 +20,16 @@ func Recommend(query string) []string {
 	checkErr(err)
 
 	searchTopics := doc.Find("ul._related_keyword_ul li a")
-	result := []string{}
-	result = extractRecommned(searchTopics, result)
+	result := extractRecommned(searchTopics)
 
 	return result
 }
 
-func extractRecommned(searchRecommned *goquery.Selection, result []string) []string {
+func extractRecommned(searchRecommned *goquery.Selection) []string {
+	target := []string{}
 	searchRecommned.Each(func(i int, recommend *goquery.Selection) {
 		word := recommend.Text()
-		result = append(result, word)
+		target = append(target, word)
 	})
-	return result
+	return target
 }
