@@ -5,13 +5,13 @@ const getArticle = require("./lib/parse").getArticle;
 const getRecommend = require("./lib/parse").getRecommend;
 
 app.get("/news/api/topic", async (req, res) => {
-  console.log(req.query);
+  const queryString = req.query;
   const obj = {};
 
-  await getArticle("hello", 1).then((article) => {
+  await getArticle(queryString.query, queryString.page).then((article) => {
     obj.List = article;
   });
-  await getRecommend("hello").then((recommend) => {
+  await getRecommend(queryString.query).then((recommend) => {
     obj.Recommend = recommend;
   });
 
