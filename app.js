@@ -2,28 +2,22 @@ const app = require("express")();
 const axios = require("axios");
 const parser = require("node-html-parser");
 const entityDecoder = require("html-entities").AllHtmlEntities;
+
 const port = 8080;
 
 app.get("/news/api/topic", (req, res) => {
-  const obj = {
-    List: [
-      ["Naver", "https://naver.com/"],
-      ["Google", "https://google.co.kr/"],
-    ],
-    Recommend: [1, 2, 3],
-  };
-  res.send(obj);
+  const obj = getArticle("hello", 1).then((a) => {
+    console.log(a);
+    res.send(a);
+  });
+  console.dir(obj, 3493489);
 });
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
 });
 
-function getObj(query, page) {
-  const url = `https://search.naver.com/search.naver?&where=news&query=${query}&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=37&start=${page}`;
-}
-
-const getHTML = async () => {
+const getHTML = async (url) => {
   try {
     return await axios.get(url);
   } catch (error) {
@@ -31,14 +25,27 @@ const getHTML = async () => {
   }
 };
 
-getHTML().then((html) => {
-  const root = parser.parse(html.data, { lowerCaseTagName: true });
-  const rawText = root.querySelector("a._sp_each_title").rawText; // querySelectorAll로 배열로 싹 긁어오기
+// 함수를 분리하자.
+async function getArticle(query, page) {
+  const start = (Number(page) - 1) * 10 + 1; // 들어오는 숫자 거르는 프로세스 만들기
+  const url = `https://search.naver.com/search.naver?&where=news&query=${query}&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=37&start=${start}`;
 
-  const entities = new entityDecoder();
-  console.log(entities.decode(rawText)); // + 배열 각 요소에 함수를 적용하고 다시 배열로 반환하는 함수 필요 : map인지 filter인지
+  const articles = [];
 
-  // go 잔해들 싹 지우고 프론트에서도 json 포맷 새로 갈자
-  // 폴더구조도 client-server 말고 그냥 통합해서 노드모듈+패키지json+얀락 하나로 같이 쓰기
-  // -> 기존 모듈 싹 지우고 클라에 있는 패키지json에 노드 서버에 썼던 의존 다 추가 그리고 yarn으로 설치
-});
+  await getHTML(url)
+    .then((res) => {
+      const document = parser.parse(res.data, { lowerCaseTagName: true });
+      const topics = document.querySelectorAll("a._sp_each_title");
+
+      const entities = new entityDecoder();
+      topics.forEach((topic) => {
+        const title = entities.decode(topic.rawText);
+        const href = topic.getAttribute("href");
+        const article = [title, href];
+        articles.push(article);
+      });
+    })
+    .catch((err) => console.error(err)); //
+
+  return articles;
+}
