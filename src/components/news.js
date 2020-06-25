@@ -3,7 +3,7 @@ import "../styles/news.css";
 import { Link } from "react-router-dom";
 import { useQueryParam, NumberParam } from "use-query-params";
 
-// TODO : 관련 검색어 포맷, CSS CSS CSS CSS 제발 CSS, 코드 정리
+// TODO : 관련 검색어 포맷, CSS CSS CSS CSS 제발 CSS, 코드 정리, 에러햄들링(404에러, JSON)
 function News() {
   const [newsList, setNewsList] = useState([["뉴스를 로드 중 입니다", "#"]]);
   const [recommendList, setRecommendList] = useState([

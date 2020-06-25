@@ -1,17 +1,27 @@
-// const app = require("express")();
+const app = require("express")();
 const axios = require("axios");
 const parser = require("node-html-parser");
 const entityDecoder = require("html-entities").AllHtmlEntities;
-// const port = 8080;
+const port = 8080;
 
-/*
+app.get("/news/api/topic", (req, res) => {
+  const obj = {
+    List: [
+      ["Naver", "https://naver.com/"],
+      ["Google", "https://google.co.kr/"],
+    ],
+    Recommend: [1, 2, 3],
+  };
+  res.send(obj);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);
 });
-*/
 
-const url =
-  "https://search.naver.com/search.naver?&where=news&query=hello&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=37&start=1";
+function getObj(query, page) {
+  const url = `https://search.naver.com/search.naver?&where=news&query=${query}&sm=tab_pge&sort=0&photo=0&field=0&reporter_article=&pd=0&ds=&de=&docid=&nso=so:r,p:all,a:all&mynews=0&cluster_rank=37&start=${page}`;
+}
 
 const getHTML = async () => {
   try {
