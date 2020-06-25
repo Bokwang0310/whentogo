@@ -21,8 +21,8 @@ function News() {
       .then((json) => {
         const newsArr = json.List;
         const recommnedArr = json.Recommend;
-        setRecommendList(recommnedArr);
         setNewsList(newsArr);
+        setRecommendList(recommnedArr);
       })
       .catch((err) => {
         console.error(err);
