@@ -1,19 +1,14 @@
 const app = require("express")();
 const port = 8080;
 
-const getArticle = require("./lib/parse").getArticle;
-const getRecommend = require("./lib/parse").getRecommend;
+const parse = require("./lib/parse").parse;
 
 app.get("/news/api/topic", async (req, res) => {
   const queryString = req.query;
-  const obj = {};
+  const query = queryString.query;
+  const page = queryString.page;
 
-  await getArticle(queryString.query, queryString.page).then((article) => {
-    obj.List = article;
-  });
-  await getRecommend(queryString.query).then((recommend) => {
-    obj.Recommend = recommend;
-  });
+  const obj = await parse(query, page);
 
   res.send(obj);
 });
