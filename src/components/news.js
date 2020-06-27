@@ -10,6 +10,7 @@ function News() {
     "관련 검색어 로드 중입니다",
   ]);
   const [query, setQuery] = useState("개학 연기");
+
   const [currentPage, setCurrentPage] = useQueryParam("page", NumberParam);
 
   useEffect(() => {
@@ -21,22 +22,29 @@ function News() {
       .then((json) => {
         const newsArr = json.List;
         const recommnedArr = json.Recommend;
+
         setNewsList(newsArr);
         setRecommendList(recommnedArr);
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err); // 에러핸들링
       });
   }, [query, currentPage]);
 
   const liTags = [];
-  for (let i = 0; i < newsList.length; i++) {
+  newsList.forEach((news, i) => {
     liTags.push(
       <li key={i}>
-        <a href={newsList[i][1]}>{newsList[i][0]}</a>
+        <a href={news[1]}>{news[0]}</a>
       </li>
     );
-  }
+  });
+
+  const tag = [];
+  recommendList.forEach((word) => {
+    tag.push('"' + word + '"');
+  });
+  console.log(tag.join(","));
 
   return (
     <>
@@ -54,7 +62,6 @@ function News() {
           setQuery(e.target.value);
         }}
       />
-      <button>search</button>
       <div className="indexContainer">
         <button
           onClick={() => {
@@ -71,7 +78,7 @@ function News() {
           2
         </button>
       </div>
-      <div className="recommend">{recommendList}</div>
+      <div className="recommend">{tag.join(", ")}</div>
       <footer className="newsFooter">
         <div className="footer-2">
           <span className="none" role="img" aria-label="page">
